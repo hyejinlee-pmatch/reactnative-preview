@@ -18,7 +18,8 @@ function App() {
         "여기는 이미지를 파일 형태로 보여준다" +
           file?.name +
           file?.size +
-          file?.type
+          file?.type +
+          file?.lastModified
       );
       // const reader = new FileReader();
       // reader.onloadend = () => {
