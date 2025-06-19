@@ -5,9 +5,9 @@ function App() {
   const [sample1, setSample1] = useState<string>("");
   const [sample2, setSample2] = useState<string>("");
   const [sample3, setSample3] = useState<string>("");
-  const [sample4, setSample4] = useState<string>("");
-  const [sample5, setSample5] = useState<string>("");
-  const [sample6, setSample6] = useState<string>("");
+  // const [sample4, setSample4] = useState<string>("");
+  // const [sample5, setSample5] = useState<string>("");
+  // const [sample6, setSample6] = useState<string>("");
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -74,9 +74,9 @@ function App() {
         <p>{sample1}</p>
         <p>{sample2}</p>
         <p>{sample3}</p>
-        <p>{sample4}</p>
+        {/* <p>{sample4}</p>
         <p>{sample5}</p>
-        <p>{sample6}</p>
+        <p>{sample6}</p> */}
       </div>
     </div>
   );
