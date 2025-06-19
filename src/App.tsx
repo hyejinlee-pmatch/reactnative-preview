@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [image, setImage] = useState<File | null>(null);
-  const [profileImage, setProfileImage] = useState<string | null>(null);
+  // const [profileImage, setProfileImage] = useState<string | null>(null);
   const [sample1, setSample1] = useState<string>("");
   const [sample2, setSample2] = useState<string>("");
   const [sample3, setSample3] = useState<string>("");
@@ -75,7 +75,7 @@ function App() {
         style={{ width: "300px", height: "300px", backgroundColor: "red" }}
         className="camera-preview"
       >
-        {profileImage && <img src={profileImage} alt="Preview" />}
+        {/* {profileImage && <img src={profileImage} alt="Preview" />} */}
       </div>
       <div
         style={{
