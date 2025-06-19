@@ -1,19 +1,28 @@
 import { useEffect, useState } from "react";
 
 function App() {
-  const [image, setImage] = useState<string | null>(null);
+  const [image, setImage] = useState<File | null>(null);
+  const [profileImage, setProfileImage] = useState<string | null>(null);
   const [sample1, setSample1] = useState<string>("");
   const [sample2, setSample2] = useState<string>("");
   const [sample3, setSample3] = useState<string>("");
-  // const [sample4, setSample4] = useState<string>("");
-  // const [sample5, setSample5] = useState<string>("");
-  // const [sample6, setSample6] = useState<string>("");
+  const [sample4, setSample4] = useState<string>("");
+  const [sample5, setSample5] = useState<string>("");
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
+    setSample4("여기는 이미지 체인지가 발생하는 부분이야" + file?.name || "");
     if (file) {
+      setImage(file);
+      setSample4("여기는 이미지를 파일 형태로 보여준다" + file);
       const reader = new FileReader();
-      reader.onloadend = () => setImage(reader.result as string);
+      reader.onloadend = () => {
+        setProfileImage(reader.result as string);
+        setSample5(
+          "여기는 이미지를 문자열로 보여준다(파일리더)" + reader.result
+        );
+      };
+      reader.readAsDataURL(file);
     }
   };
   const handleMessage = (event: MessageEvent) => {
@@ -55,11 +64,12 @@ function App() {
         capture="environment"
         onChange={handleImageChange}
       />
+      {image && <p>{image.name}</p>}
       <div
         style={{ width: "300px", height: "300px", backgroundColor: "red" }}
         className="camera-preview"
       >
-        {image && <img src={image} alt="Preview" />}
+        {profileImage && <img src={profileImage} alt="Preview" />}
       </div>
       <div
         style={{
@@ -74,9 +84,8 @@ function App() {
         <p>{sample1}</p>
         <p>{sample2}</p>
         <p>{sample3}</p>
-        {/* <p>{sample4}</p>
+        <p>{sample4}</p>
         <p>{sample5}</p>
-        <p>{sample6}</p> */}
       </div>
     </div>
   );
