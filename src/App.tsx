@@ -7,22 +7,27 @@ function App() {
   const [sample2, setSample2] = useState<string>("");
   const [sample3, setSample3] = useState<string>("");
   const [sample4, setSample4] = useState<string>("");
-  const [sample5, setSample5] = useState<string>("");
+  // const [sample5, setSample5] = useState<string>("");
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     setSample4("여기는 이미지 체인지가 발생하는 부분이야" + file?.name || "");
     if (file) {
       setImage(file);
-      setSample4("여기는 이미지를 파일 형태로 보여준다" + file);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setProfileImage(reader.result as string);
-        setSample5(
-          "여기는 이미지를 문자열로 보여준다(파일리더)" + reader.result
-        );
-      };
-      reader.readAsDataURL(file);
+      setSample4(
+        "여기는 이미지를 파일 형태로 보여준다" +
+          file?.name +
+          file?.size +
+          file?.type
+      );
+      // const reader = new FileReader();
+      // reader.onloadend = () => {
+      //   setProfileImage(reader.result as string);
+      //   setSample5(
+      //     "여기는 이미지를 문자열로 보여준다(파일리더)" + reader.result
+      //   );
+      // };
+      // reader.readAsDataURL(file);
     }
   };
   const handleMessage = (event: MessageEvent) => {
@@ -53,9 +58,10 @@ function App() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "start",
         gap: "30px",
         height: "100vh",
+        padding: "30px",
       }}
     >
       <input
@@ -81,11 +87,13 @@ function App() {
         }}
       >
         <p>오류들</p>
-        <p>{sample1}</p>
-        <p>{sample2}</p>
-        <p>{sample3}</p>
-        <p>{sample4}</p>
-        <p>{sample5}</p>
+        <p>{sample1 ?? "handleMessage 이벤트가 실행되지 않았습니다."}</p>
+        <p>{sample2 ?? "handleMessage 이벤트에서 파싱되지 않았습니다."}</p>
+        <p>
+          {sample3 ?? "handleDrugPhotoSearch 이벤트가 실행되지 않았습니다."}
+        </p>
+        <p>{sample4 ?? "이미지 체인지가 실행되지 않았습니다."}</p>
+        {/* <p>{sample5 ?? "이미지를 문자열로 보여주지 않았습니다."}</p> */}
       </div>
     </div>
   );
